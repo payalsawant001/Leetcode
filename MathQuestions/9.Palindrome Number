@@ -1,0 +1,34 @@
+# 9. Palindrome Number
+
+##Approach
+Negative numbers and numbers ending with 0 (except 0 itself) cannot be palindromes.
+Reverse only half of the number instead of the entire number.
+Stop when the reversed half becomes greater than or equal to the remaining half.
+For even digits, compare both halves directly.
+For odd digits, ignore the middle digit by dividing the reversed half by 10 before comparing.
+Time Complexity
+
+O(log₁₀ n)
+
+Space Complexity
+
+O(1)
+
+##Code : 
+
+class Solution {
+    public boolean isPalindrome(int x) {
+        if (x < 0 || (x % 10 == 0 && x != 0)) {
+            return false;
+        }
+
+        int reversedHalf = 0;
+
+        while (x > reversedHalf) {
+            reversedHalf = reversedHalf * 10 + x % 10;
+            x /= 10;
+        }
+
+        return x == reversedHalf || x == reversedHalf / 10;
+    }
+}
